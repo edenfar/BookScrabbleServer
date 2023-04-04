@@ -1,10 +1,23 @@
 package test;
 
+import bookscrabble.Dictionary;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class DictionaryManager {
 
+    public Map<String, Dictionary> dictionaryMap;
+    public static DictionaryManager manager;
+
+    private DictionaryManager() {
+        this.dictionaryMap = new HashMap<>();
+    }
+
     public static DictionaryManager get() {
-        return null;
+        if (manager == null)
+            manager = new DictionaryManager();
+        return manager;
     }
 
     public boolean query(String... args) {
@@ -16,6 +29,6 @@ public class DictionaryManager {
     }
 
     public int getSize() {
-        return 0;
+        return this.dictionaryMap.size();
     }
 }
