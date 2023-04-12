@@ -22,34 +22,35 @@ public class DictionaryManager {
 
     public boolean query(String... args) {
         Boolean ret = false;               
-        String word = args[args.length - 1]; // Save the last arg in a variable
-        for (int i = 0; i < args.length - 1; i++) { // Go over all the args except the last one
+        String word = args[args.length - 1];
+        for (int i = 0; i < args.length - 1; i++) {
             String fn = args[i];
-            Dictionary dic = new Dictionary(fn);
-            this.dictionaryMap.put(fn, dic);
+            Dictionary dictionary = new Dictionary(fn);
+            this.dictionaryMap.put(fn, dictionary);
         }
         for (Dictionary value : dictionaryMap.values()) {
             if (value.query(word)){
                 ret = true;
             }
+            value.close();
         }
         return ret;
     }
 
     public boolean challenge(String... args) {
         Boolean ret = false;               
-        String word = args[args.length - 1]; // Save the last arg in a variable
-        for (int i = 0; i < args.length - 1; i++) { // Go over all the args except the last one
+        String word = args[args.length - 1];
+        for (int i = 0; i < args.length - 1; i++) {
             String fn = args[i];
-            Dictionary dic = new Dictionary(fn);
-            this.dictionaryMap.put(fn, dic);
+            Dictionary dictionary = new Dictionary(fn);
+            this.dictionaryMap.put(fn, dictionary);
         }
-        for (Dictionary dic : dictionaryMap.values()) {
-            if (dic.challenge(word)){
+        for (Dictionary value : dictionaryMap.values()) {
+            if (value.challenge(word)){
                 ret = true;
             }
+            value.close();
         }
-        System.out.println(ret);
         return ret;
     }
 
