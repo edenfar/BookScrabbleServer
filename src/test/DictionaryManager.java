@@ -21,7 +21,7 @@ public class DictionaryManager {
     }
 
     public boolean query(String... args) {
-        Boolean ret = false;               
+        boolean ret = false;
         String word = args[args.length - 1]; // Save the last arg in a variable
         for (int i = 0; i < args.length - 1; i++) { // Go over all the args except the last one
             String fn = args[i];
@@ -32,12 +32,13 @@ public class DictionaryManager {
             if (value.query(word)){
                 ret = true;
             }
+            value.close();
         }
         return ret;
     }
 
     public boolean challenge(String... args) {
-        Boolean ret = false;               
+        boolean ret = false;
         String word = args[args.length - 1]; // Save the last arg in a variable
         for (int i = 0; i < args.length - 1; i++) { // Go over all the args except the last one
             String fn = args[i];
@@ -48,8 +49,8 @@ public class DictionaryManager {
             if (dic.challenge(word)){
                 ret = true;
             }
+            dic.close();
         }
-        System.out.println(ret);
         return ret;
     }
 
