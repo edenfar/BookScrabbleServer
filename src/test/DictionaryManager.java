@@ -21,11 +21,37 @@ public class DictionaryManager {
     }
 
     public boolean query(String... args) {
-        return false;
+        Boolean ret = false;               
+        String word = args[args.length - 1];
+        for (int i = 0; i < args.length - 1; i++) {
+            String fn = args[i];
+            Dictionary dictionary = new Dictionary(fn);
+            this.dictionaryMap.put(fn, dictionary);
+        }
+        for (Dictionary value : dictionaryMap.values()) {
+            if (value.query(word)){
+                ret = true;
+            }
+            value.close();
+        }
+        return ret;
     }
 
     public boolean challenge(String... args) {
-        return false;
+        Boolean ret = false;               
+        String word = args[args.length - 1];
+        for (int i = 0; i < args.length - 1; i++) {
+            String fn = args[i];
+            Dictionary dictionary = new Dictionary(fn);
+            this.dictionaryMap.put(fn, dictionary);
+        }
+        for (Dictionary value : dictionaryMap.values()) {
+            if (value.challenge(word)){
+                ret = true;
+            }
+            value.close();
+        }
+        return ret;
     }
 
     public int getSize() {
